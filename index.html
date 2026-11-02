@@ -911,3 +911,67 @@
             if (urlInput) {
                 currentEditImages.push(urlInput);
             }
+            if (currentEditImages.length === 0) {
+                currentEditImages.push("https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&h=600&q=80");
+            }
+
+            const productData = {
+                id: id || Date.now().toString(),
+                title: document.getElementById('edit-title').value,
+                category: document.getElementById('edit-category').value,
+                price: parseFloat(document.getElementById('edit-price').value),
+                badge: document.getElementById('edit-badge').value,
+                description: document.getElementById('edit-description').value,
+                materials: document.getElementById('edit-materials').value,
+                images: currentEditImages
+            };
+
+            if (id) {
+                const idx = products.findIndex(p => p.id === id);
+                products[idx] = productData;
+            } else {
+                products.push(productData);
+            }
+
+            saveState();
+            renderProducts();
+            renderAdminProductsTable();
+            closeModal('edit-product-modal');
+        }
+
+        function deleteProduct(id) {
+            if (confirm("Voulez-vous vraiment supprimer cette fiche bijou ?")) {
+                products = products.filter(p => p.id !== id);
+                saveState();
+                renderProducts();
+                renderAdminProductsTable();
+            }
+        }
+
+        function deleteCRMEmail(email) {
+            crmList = crmList.filter(e => e !== email);
+            saveState();
+            renderAdminCRMTable();
+        }
+
+        function exportCRMCSV() {
+            const csvContent = "data:text/csv;charset=utf-8,Email\n" + crmList.join("\n");
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "abonnees_lignes_de_paille.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
