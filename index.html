@@ -115,6 +115,7 @@
             <div class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto no-scrollbar py-1 text-xs font-medium">
                 <button onclick="filterCategory('all')" id="cat-all" class="cat-btn bg-brand-darkbrown text-white px-4 py-2 rounded-full whitespace-nowrap transition shadow-sm">Toutes les créations</button>
                 <button onclick="filterCategory('boucles')" id="cat-boucles" class="cat-btn bg-white hover:bg-brand-gold/10 text-brand-brown px-4 py-2 rounded-full whitespace-nowrap border border-brand-gold/20 transition">Boucles d'oreilles</button>
+                <button onclick="filterCategory('boucles-bois')" id="cat-boucles-bois" class="cat-btn bg-white hover:bg-brand-gold/10 text-brand-brown px-4 py-2 rounded-full whitespace-nowrap border border-brand-gold/20 transition">Boucles d'oreilles bois</button>
                 <button onclick="filterCategory('ensemble')" id="cat-ensemble" class="cat-btn bg-white hover:bg-brand-gold/10 text-brand-brown px-4 py-2 rounded-full whitespace-nowrap border border-brand-gold/20 transition">Ensemble collier/boucle</button>
                 <button onclick="filterCategory('collier')" id="cat-collier" class="cat-btn bg-white hover:bg-brand-gold/10 text-brand-brown px-4 py-2 rounded-full whitespace-nowrap border border-brand-gold/20 transition">Colliers</button>
                 <button onclick="filterCategory('accessoire')" id="cat-accessoire" class="cat-btn bg-white hover:bg-brand-gold/10 text-brand-brown px-4 py-2 rounded-full whitespace-nowrap border border-brand-gold/20 transition">Accessoires</button>
@@ -182,6 +183,7 @@
                     <h4 class="font-serif font-bold text-sm text-brand-darkbrown mb-3">Catégories</h4>
                     <ul class="space-y-2 text-xs text-brand-brown/80">
                         <li><a href="#" onclick="filterCategory('boucles')" class="hover:text-brand-gold transition">Boucles d'oreilles</a></li>
+                        <li><a href="#" onclick="filterCategory('boucles-bois')" class="hover:text-brand-gold transition">Boucles d'oreilles bois</a></li>
                         <li><a href="#" onclick="filterCategory('ensemble')" class="hover:text-brand-gold transition">Ensembles</a></li>
                         <li><a href="#" onclick="filterCategory('collier')" class="hover:text-brand-gold transition">Colliers</a></li>
                         <li><a href="#" onclick="filterCategory('accessoire')" class="hover:text-brand-gold transition">Accessoires</a></li>
@@ -319,11 +321,11 @@
                     </div>
                     <div>
                         <h4 class="font-bold text-brand-darkbrown text-sm">2. Expédition & Livraison</h4>
-                        <p>Chaque bijou est soigneusement emballé dans un écrin protecteur. Les expéditions sont réalisées en Colissimo suivi ou lettre suivie sous 3 à 5 jours ouvrés.</p>
+                        <p>Les frais de livraison vous seront communiqués à la validation de la commande en fonction du nombre d'articles.</p>
                     </div>
                     <div>
                         <h4 class="font-bold text-brand-darkbrown text-sm">3. Retours & Échanges</h4>
-                        <p>Vous disposez d'un délai de 14 jours après réception de votre commande pour demander un échange ou un retour si la création ne correspond pas à vos attentes.</p>
+                        <p>Pas de retour ou d'échange possible.</p>
                     </div>
                 </div>
             </div>
@@ -434,6 +436,7 @@
                         <label class="block text-xs font-semibold text-brand-brown mb-1">Catégorie *</label>
                         <select id="edit-category" required class="w-full px-3 py-2 rounded-xl border border-brand-gold/20 text-xs focus:ring-2 focus:ring-brand-gold outline-none bg-white">
                             <option value="boucles">Boucles d'oreilles</option>
+                            <option value="boucles-bois">Boucles d'oreilles bois</option>
                             <option value="ensemble">Ensemble collier/boucle</option>
                             <option value="collier">Colliers</option>
                             <option value="accessoire">Accessoires</option>
@@ -460,7 +463,7 @@
 
                 <div>
                     <label class="block text-xs font-semibold text-brand-brown mb-1">Matériaux & Dimensions</label>
-                    <input type="text" id="edit-materials" placeholder="Paille de seigle, Laiton doré à l'or fin..." class="w-full px-3 py-2 rounded-xl border border-brand-gold/20 text-xs focus:ring-2 focus:ring-brand-gold outline-none">
+                    <input type="text" id="edit-materials" placeholder="Paille de seigle, Bois noble, Laiton..." class="w-full px-3 py-2 rounded-xl border border-brand-gold/20 text-xs focus:ring-2 focus:ring-brand-gold outline-none">
                 </div>
 
                 <div>
@@ -494,6 +497,18 @@
                 materials: "Paille de seigle, apprêts en laiton doré à l'or fin 24k",
                 images: [
                     "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&h=600&q=80",
+                    "https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&h=600&q=80"
+                ]
+            },
+            {
+                id: "5",
+                title: "Puces Goutte Bois & Marqueterie",
+                category: "boucles-bois",
+                price: 78,
+                badge: "Bois Noble",
+                description: "Boucles d'oreilles mariant l'élégance du bois naturel sélectionné et la brillance de la marqueterie de paille dorée.",
+                materials: "Essence de bois noble, paille de seigle naturelle, tiges argent 925",
+                images: [
                     "https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=600&h=600&q=80"
                 ]
             },
@@ -566,6 +581,7 @@
             const titleMap = {
                 all: "Toutes les créations",
                 boucles: "Boucles d'oreilles",
+                'boucles-bois': "Boucles d'oreilles bois",
                 ensemble: "Ensemble collier/boucle",
                 collier: "Colliers",
                 accessoire: "Accessoires",
