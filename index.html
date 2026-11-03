@@ -266,6 +266,7 @@
 
                 <form onsubmit="handleCartCheckout(event)" class="space-y-3 pt-2">
                     <input type="text" id="order-name" required placeholder="Votre nom complet" class="w-full px-4 py-2.5 rounded-xl border border-brand-gold/20 text-xs focus:ring-2 focus:ring-brand-gold outline-none">
+                    <input type="email" id="order-email" required placeholder="Votre adresse e-mail (obligatoire)" class="w-full px-4 py-2.5 rounded-xl border border-brand-gold/20 text-xs focus:ring-2 focus:ring-brand-gold outline-none">
                     <input type="tel" id="order-phone" required placeholder="Votre numéro de téléphone" class="w-full px-4 py-2.5 rounded-xl border border-brand-gold/20 text-xs focus:ring-2 focus:ring-brand-gold outline-none">
                     <textarea id="order-address" required placeholder="Votre adresse de livraison complète" rows="2" class="w-full px-4 py-2 rounded-xl border border-brand-gold/20 text-xs focus:ring-2 focus:ring-brand-gold outline-none"></textarea>
                     
@@ -762,6 +763,7 @@
             }
 
             const name = document.getElementById('order-name').value;
+            const email = document.getElementById('order-email').value;
             const phone = document.getElementById('order-phone').value;
             const address = document.getElementById('order-address').value;
 
@@ -772,7 +774,7 @@
                 emailBody += `- ${item.title} (x${item.qty}) : ${item.price * item.qty} €\n`;
             });
             emailBody += `\nTotal de la commande : ${total.toFixed(2)} €\n\n`;
-            emailBody += `Coordonnées pour la livraison :\nNom : ${name}\nTéléphone : ${phone}\nAdresse : ${address}\n\n`;
+            emailBody += `Coordonnées pour la livraison :\nNom : ${name}\nE-mail : ${email}\nTéléphone : ${phone}\nAdresse : ${address}\n\n`;
             emailBody += `Merci de m'envoyer le lien pour effectuer le règlement.\n`;
 
             const mailtoUrl = `mailto:lignesdepaille@gmail.com?subject=${encodeURIComponent("Nouvelle Commande Lignes de Paille - " + name)}&body=${encodeURIComponent(emailBody)}`;
